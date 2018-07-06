@@ -1,0 +1,23 @@
+{% extends "base2.html" %}
+
+{% block title %}
+	Edit contract
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<div class="form-container col-sm-4">
+		  </br>
+		  <p class="white-text" style="text-align: center; font-weight: bold; font-size: 35px;"><strong>Edit Contract</strong></p>
+		  <form class="form-horizontal white-text" action="{% url 'mainapp:edit_contract' contrid %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			{% include 'form_template.html' %}
+			<div class="form-group">
+			  <div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-success ">Update</button>
+			  </div>
+			</div>
+		  </form>
+		</div>
+	</div>
+{% endblock %}

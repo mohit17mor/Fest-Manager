@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block body %}
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Dashboard</h1>
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+          <button class="btn btn-sm btn-outline-secondary">Share</button>
+          <button class="btn btn-sm btn-outline-secondary">Export</button>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+          <span data-feather="calendar"></span>
+          This week
+        </button>
+      </div>
+    </div>
+    <div class="row">
+        <div class="card-deck mb-3 text-center col-sm-4">
+          <div class="card mb-4 box-shadow">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">SPORTS</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">135000 <small class="text-muted">/ ₹</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li><strong>Type:</strong> Proshow</li>
+                <li><strong>Vendor:</strong> mgr_ocean</li>
+                <li><strong>Desc:</strong> Rahul Ram, bass guitar, </li>
+                <li>30 mins, contemporary</li>
+                <br>
+                <li><strong>Type:</strong> Logistics</li>
+                <li><strong>Vendor:</strong> yamuna_taxi</li>
+                <li><strong>Desc:</strong> 20 cabs, sedans, dzire/verna </li>
+                <br>
+                <li><strong>Type:</strong> Catering</li>
+                <li><strong>Vendor:</strong> adt_ctr</li>
+                <li><strong>Desc:</strong>2000 people, deluxe service</li>
+                <br>
+              </ul>
+              <a href="{% url 'mainapp:add package 1' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">BUY NOW</button></a>
+            </div>
+          </div>
+        </div>
+        <div class="card-deck mb-3 text-center col-sm-4">
+          <div class="card mb-4 box-shadow">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">CULTURAL</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">370000 <small class="text-muted">/ ₹</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li><strong>Type:</strong> Proshow</li>
+                <li><strong>Vendor:</strong> mgr_amit_trivedi</li>
+                <li><strong>Desc:</strong> 2 hrs, bollywood night, ticketed </li>
+                <br>
+                <li><strong>Type:</strong> Logistics</li>
+                <li><strong>Vendor:</strong> yamuna_taxi</li>
+                <li><strong>Desc:</strong> 30 cabs, 1 bus, dzire/verna, scania-multi-axle </li>
+                <br>
+                <li><strong>Type:</strong> Catering</li>
+                <li><strong>Vendor:</strong> adt_ctr</li>
+                <li><strong>Desc:</strong>3000 people, party theme</li>
+                <br>
+              </ul>
+             <a href="{% url 'mainapp:add package 1' %}"> <button type="button" class="btn btn-lg btn-block btn-outline-primary">BUY NOW</button></a>
+            </div>
+          </div>
+        </div>
+        <div class="card-deck mb-3 text-center col-sm-4">
+          <div class="card mb-4 box-shadow">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">TECHNICAL</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">1840000 <small class="text-muted">/ ₹</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li><strong>Type:</strong> Proshow</li>
+                <li><strong>Vendor:</strong> mgr_sonu_nigam</li>
+                <li><strong>Desc:</strong> 1.5 hrs, classic bollywood concert, non ticketed </li>
+                <br>
+                <li><strong>Type:</strong> Logistics</li>
+                <li><strong>Vendor:</strong> yamuna_taxi</li>
+                <li><strong>Desc:</strong> 30 cabs, 5 buses, 10 dzire/verna, 20 Sumo, scania-multi-axle </li>
+                <br>
+                <li><strong>Type:</strong> Catering</li>
+                <li><strong>Vendor:</strong> adt_ctr</li>
+                <li><strong>Desc:</strong>200 people, birthday snacks</li>
+              </ul>
+              <a href="{% url 'mainapp:add package 1' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">BUY NOW</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div id="proshows" class="row">
+        <div class="col-md-10">
+          <h2>PROSHOWS</h2>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for act in proshow_contracts %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{act.description}}</td>
+            <td>{{act.price}}</td>
+            <td><a href="{% url 'mainapp:add_contract_to_cart' act.id %}"><i class="fas fa-plus-circle fa-2x" style="color:green"></i></a></td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <br>
+      <div id="logistics" class="row">
+        <div class="col-md-10">
+          <h2>LOGISTICS</h2>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for logi in logistics_contracts %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{logi.description}}</td>
+            <td>{{logi.price}}</td>
+           <td><a href="{% url 'mainapp:add_contract_to_cart' logi.id %}"><i class="fas fa-plus-circle fa-2x" style="color:green"></i></a></td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <br>
+      <div id="food" class="row">
+        <div class="col-md-10">
+          <h2>CATERING</h2>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for cater in catering_contracts %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{cater.description}}</td>
+            <td>{{cater.price}}</td>
+            <td><a href="{% url 'mainapp:add_contract_to_cart' cater.id %}"><i class="fas fa-plus-circle fa-2x" style="color:green"></i></a></td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base2.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block body %}
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Dashboard</h1>
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+          <button class="btn btn-sm btn-outline-secondary">Share</button>
+          <button class="btn btn-sm btn-outline-secondary">Export</button>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+          <span data-feather="calendar"></span>
+          This week
+        </button>
+      </div>
+    </div>
+    <div id="commit" class="row">
+        <div class="col-md-10">
+          <h2>My Commitments</h2>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for contr in taken_contracts %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{contr.description}}</td>
+            <td>{{contr.price}}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <br>
+      <div id="commit" class="row">
+        <div class="col-md-10">
+          <h2>Available Contracts</h2>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for ncontr in not_taken %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{ncontr.contract_type}}</td>
+            <td>{{ncontr.description}}</td>
+            <td>{{ncontr.price}}</td>
+            <td><a href="{% url 'mainapp:edit_contract' ncontr.id%}"><i class="fas fa-edit fa-2x"></i></a></td>
+            <td><a href="{% url 'mainapp:remove_contract' ncontr.id %}"><i class="fas fa-minus-circle fa-2x" style="color:rgb(226, 0, 0);"></i></a></td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+{% endblock %}
